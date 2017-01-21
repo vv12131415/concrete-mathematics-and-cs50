@@ -1,30 +1,28 @@
 <?php
 
 $phoneBook = [
-    ["Абалаев Иван", "111-11-11"],        // элемент списка №0
-    ["Баранов Сергей", "222-11-11"],      // элемент списка №1
-    ["Волкова Ольга", "333-11-11"],       // элемент списка №2
-    ["Громов Пётр", "444-11-11"],         // элемент списка №3
-    ["Добрая Анна", "555-11-11"],         // элемент списка №4
-    ["Ежова Елизавета", "666-11-11"]      // элемент списка №5
+    ["Adini Ada", "111-11-11"],
+    ["Bigelow Bam Bam", "222-11-11"],
+    ["Chanel Coco", "333-11-11"],
+    ["Donovan Landon", "444-11-11"],
+    ["Eagleman John", "555-11-11"],
+    ["Fabozzi Robert", "666-11-11"]
 ];
 
 
-$tmp = binarySearch($phoneBook, "Добрая Анна");
+$phone = binarySearch($phoneBook, "Eagleman John");
 
 function binarySearch(array $phoneBook, string $lookupPerson)
 {
     $middlePair = getMiddleRecord($phoneBook);
     $middlePerson = $middlePair[0];
     if ($middlePerson == $lookupPerson) {
-        //$phone = $middlePair[1];
-        return $middlePair;
+        $phone = $middlePair[1];
+        return $phone;
     } elseif ($middlePerson > $lookupPerson) {
-        $halfOfTheTask = getFirstHalf($phoneBook);
-        return binarySearch($halfOfTheTask, $lookupPerson);
+        return binarySearch(getFirstHalf($phoneBook), $lookupPerson);
     } elseif ($middlePerson < $lookupPerson) {
-        $halfOfTheTask = getSecondHalf($phoneBook);
-        return binarySearch($halfOfTheTask, $lookupPerson);
+        return binarySearch(getSecondHalf($phoneBook), $lookupPerson);
     }
 }
 
@@ -36,7 +34,7 @@ function getMiddleRecord($phoneBook)
 
 function getMiddleIndex($phoneBook)
 {
-    return floor(count($phoneBook)/2);
+    return floor(count($phoneBook) / 2);
 }
 
 function getFirstHalf($phoneBook)
